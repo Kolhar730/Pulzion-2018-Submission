@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Mars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/mars-3d.css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/95/three.js'></script>
+    <script src='https://threejs.org/examples/js/controls/OrbitControls.js'></script>
+</head>
+<body>
+<div id="marsloc"></div>
+<article class="marsinfo">
+    <h1>MARS</h1>
+    <div>
+        
+  <h2 style="font-family: cursive" class="main-head">Did You Know...?</h2>
+        <p class="fact" id="fact">Mars is the also the planet most likely to support life outside of Earth; seasonal methane
+            plumes observed over several decades have yet to be explained.
+        </p>
+    </div>
+</article>
+
+<article class="marsinfo" id="marsinfo-2">
+    <div>
+        Tutorial: 
+    
+    <p>
+        Use the mouse to interact with the planet. <br>
+        See what happens with a click <br>and hold the model to see around.
+    </p>
+</div>
+</article>
+
+<script src="../js/3d-mars.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+
+    var facts = [
+	  "Mars is the fourth planet from the Sun",
+	  "The planet is named after Mars, the Roman god of war",
+	  "The landmass of Mars and Earth is very similar. ",
+	  "Only 16 of the 39 Mars missions have been successful.",
+	  "Pieces of Mars have been found on Earth",
+	  "Mars experiences huge dust storms – the largest in our solar system.",
+	  "The Sun looks about half its size half it does from Earth when seen from Mars.",
+	  "It takes Mars 687 Earth days to orbit the Sun.",
+	  "The two moons of Mars, Phobos and Deimos, were written about in the book ‘Gulliver’s Travels’ by author Jonathan Swift",
+	  "The orbit of Mars is the most eccentric of the eight planets."
+	 ];
+    var counter = 0; 
+    document.addEventListener('DOMContentLoaded', function () {
+        setInterval(function () {
+            document.getElementById('fact').innerHTML = facts[counter%10];
+            counter++;
+        }, 3500);
+    }, false);
+
+
+
+</script>
+</body>
+</html>

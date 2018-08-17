@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Trip To Mars</title>
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/travel.css" />
+		<script src="../js/modernizr.custom.js"></script>
+	</head>
+
+	
+
+	<body>
+
+		<a href="home.html"><button style="z-index: 100">Back Home</button></a>
+
+		<nav class="thumb-nav">
+			<a data-container="container-1" class="thumb-nav__item" href="#"><img src="../img/thumbs/thumb1.png" alt="thumb01" /><span>1</span></a>
+			<a data-container="container-2" class="thumb-nav__item" href="#"><img src="../img/thumbs/thumb1.png" alt="thumb02" /><span>2</span></a>
+			<a data-container="container-3" class="thumb-nav__item" href="#"><img src="../img/thumbs/thumb1.png" alt="thumb03" /><span>3</span></a>
+			<a data-container="container-4" class="thumb-nav__item" href="#"><img src="../img/thumbs/thumb1.png" alt="thumb04" /><span>4</span></a>
+			<a data-container="container-5" class="thumb-nav__item" href="#"><img src="../img/thumbs/thumb1.png" alt="thumb05" /><span>5</span></a>
+			<a data-container="container-6" class="thumb-nav__item" href="#"><img src="../img/thumbs/thumb1.png" alt="thumb06" /><span>6</span></a>
+		</nav>
+		
+		
+
+		<div id="container-1" class="container theme-1">
+			<header class="intro">
+				<img class="intro__image" src="../img/header01.jpg" alt="SpaceX BFR"/>
+				<div class="intro__content">
+					<h1 class="intro__title">Powerful Rockets</h1>
+					<div class="intro__subtitle">
+						<div class="intro__description">
+							A Powerful Rocket is required to get a large payload into space.
+						</div>
+					</div>
+				</div><!-- /intro__content -->
+			</header><!-- /intro -->
+		</div><!-- /container -->
+
+
+		<div id="container-2" class="container theme-2">
+			<header class="intro">
+				<img class="intro__image" src="../img/header02.jpg" alt="Road"/>
+				<div class="intro__content">
+					<h1 class="intro__title">Long Journey.</h1>
+					<div class="intro__subtitle">
+						<div class="intro__description">
+							Astonauts will travel to the surface of mars for upto 7 - 8 months.
+						</div>
+					</div>
+				</div><!-- /intro__content -->
+			</header><!-- /intro -->
+		</div><!-- /container -->
+
+
+
+		<div id="container-3" class="container">
+			<header class="intro">
+				<img class="intro__image" src="../img/header03.jpg" alt="Glacier"/>
+				<div class="intro__content">
+					<h1 class="intro__title">7 Minutes of Terror</h1>
+					<div class="intro__subtitle">
+						<div class="intro__description">
+							The Travellers will have to survive 7 minutes of Terror on entry to Mars's Atmosphere.
+						</div>
+					</div>
+				</div><!-- /intro__content -->
+			</header><!-- /intro -->
+		</div><!-- /container -->
+
+		<div id="container-4" class="container">
+			<header class="intro">
+				<img class="intro__image" src="../img/header04.jpg" alt="Glacier"/>
+				<div class="intro__content">
+					<h1 class="intro__title">Landing</h1>
+					<div class="intro__subtitle">
+						
+						<div class="intro__description">
+							On Successfully landing on the surface, the travellers commence their work.
+						</div>
+					</div>
+				</div><!-- /intro__content -->
+			</header><!-- /intro -->
+		</div><!-- /container -->
+
+<div id="container-5" class="container">
+	<header class="intro">
+		<img class="intro__image" src="../img/header05.jpg" alt="Glacier" />
+		<div class="intro__content">
+			<h1 class="intro__title">Building Cities</h1>
+			<div class="intro__subtitle">
+
+				<div class="intro__description">
+					Further missions will help establish life's survival on the red planet.
+				</div>
+			</div>
+		</div>
+	</header>
+</div>
+
+<div id="container-6" class="container">
+	<header class="intro">
+		<img class="intro__image" src="../img/header06.jpg" alt="Glacier" />
+		<div class="intro__content">
+			<h1 class="intro__title">The Dream Acheived.</h1>
+			<div class="intro__subtitle">
+
+				<div class="intro__description">
+					Interplanetary Life is no more a dream.
+				</div>
+			</div>
+		</div>
+		<!-- /intro__content -->
+	</header>
+	<!-- /intro -->
+</div>
+<!-- /container -->
+		
+		<script src="../js/classie.js"></script>
+		<script>
+			(function() {
+				var support = { animations : Modernizr.cssanimations },
+					animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
+					animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
+					onEndAnimation = function( el, callback ) {
+						var onEndCallbackFn = function( ev ) {
+							if( support.animations ) {
+								if( ev.target != this ) return;
+								this.removeEventListener( animEndEventName, onEndCallbackFn );
+							}
+							if( callback && typeof callback === 'function' ) { callback.call(); }
+						};
+						if( support.animations ) {
+							el.addEventListener( animEndEventName, onEndCallbackFn );
+						}
+						else {
+							onEndCallbackFn();
+						}
+					};
+
+				var containers = [].slice.call( document.querySelectorAll( '.container' ) ),
+					containersCount = containers.length,
+					nav = document.querySelector( 'nav.thumb-nav' ),
+					pageTriggers = [].slice.call( nav.children ),
+					isAnimating = false, current = 0;
+
+				function init() {
+					resetScroll();
+					// disable scrolling
+					window.addEventListener( 'scroll', noscroll );
+					// set current page trigger
+					classie.add( pageTriggers[ current ], 'thumb-nav__item--current' );
+					// set current container
+					classie.add( containers[ current ], 'container--current' );
+					// initialize events
+					initEvents();
+				}
+
+				function initEvents() {
+					// slideshow navigation
+					pageTriggers.forEach( function( pageTrigger ) {
+						pageTrigger.addEventListener( 'click', function( ev ) {
+							ev.preventDefault();
+							navigate( this );
+						} );
+					} );
+
+					// open each container's content area when clicking on the respective trigger button
+					containers.forEach( function( container ) {
+						container.querySelector( 'button.trigger' ).addEventListener( 'click', function() {
+							toggleContent( container, this );
+						} );
+					} );
+
+					 
+				}
+
+				function navigate( pageTrigger ) {
+					var oldcurrent = current,
+						newcurrent = pageTriggers.indexOf( pageTrigger );
+
+					if( isAnimating || oldcurrent === newcurrent ) return;
+					isAnimating = true;
+
+					// reset scroll
+					allowScroll();
+					resetScroll();
+					preventScroll();
+
+					var currentPageTrigger = pageTriggers[ current ],
+						nextContainer = document.getElementById( pageTrigger.getAttribute( 'data-container' ) ),
+						currentContainer = containers[ current ],
+						dir = newcurrent > oldcurrent ? 'left' : 'right';
+
+					classie.remove( currentPageTrigger, 'thumb-nav__item--current' );
+					classie.add( pageTrigger, 'thumb-nav__item--current' );
+
+					// update current
+					current = newcurrent;
+
+					// add animation classes
+					classie.add( nextContainer, dir === 'left' ? 'container--animInRight' : 'container--animInLeft' );
+					classie.add( currentContainer, dir === 'left' ? 'container--animOutLeft' : 'container--animOutRight' );
+
+					onEndAnimation( currentContainer, function() {
+						// clear animation classes
+						classie.remove( currentContainer, dir === 'left' ? 'container--animOutLeft' : 'container--animOutRight' );
+						classie.remove( nextContainer, dir === 'left' ? 'container--animInRight' : 'container--animInLeft' );
+
+						// clear current class / set current class
+						classie.remove( currentContainer, 'container--current' );
+						classie.add( nextContainer, 'container--current' );
+
+						isAnimating = false;
+					} );
+				}
+
+				function toggleContent( container, trigger ) {
+					if( classie.has( container, 'container--open' ) ) {
+						classie.remove( container, 'container--open' );
+						classie.remove( trigger, 'trigger--active' );
+						classie.remove( nav, 'thumb-nav--hide' );
+						container.setAttribute( 'data-open', '' );
+						preventScroll();
+					}
+					else {
+						classie.add( container, 'container--open' );
+						classie.add( trigger, 'trigger--active' );
+						classie.add( nav, 'thumb-nav--hide' );
+						container.setAttribute( 'data-open', 'open' );
+						allowScroll();
+					}
+				}
+
+				// scroll functions
+				function resetScroll() { document.body.scrollTop = document.documentElement.scrollTop = 0; }
+				function preventScroll() { window.addEventListener( 'scroll', noscroll ); }
+				function allowScroll() { window.removeEventListener( 'scroll', noscroll ); }
+				function noscroll() { 
+					window.scrollTo( 0, 0 ); 
+				}
+
+				init();
+				
+			})();
+		</script>
+	</body>
+</html>
